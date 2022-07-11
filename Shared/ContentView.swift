@@ -13,6 +13,8 @@ struct ContentView: View {
 
     @AppStorage("timer_value") var timerValue = 0
 
+    @State var showAlert = false
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,7 +26,7 @@ struct ContentView: View {
                 VStack (spacing: 30.0){
                     Text("残り\(timerValue - count)秒")
                         .font(.largeTitle)
-                    
+
                     HStack {
                         Button(action: {
                             startTimer()
@@ -50,6 +52,11 @@ struct ContentView: View {
             .navigationBarItems(trailing: NavigationLink(destination: SettingView()) {
                 Text("秒数設定")
             })
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("しゅ〜りょ〜"),
+                      message: Text("タイマー終了時間です。"),
+                      dismissButton: .default(Text("OK")))
+            }
         }
     }
 
@@ -57,6 +64,8 @@ struct ContentView: View {
         count += 1
         if timerValue - count <= 0 {
             timerHandler?.invalidate()
+
+            showAlert = true
         }
     }
 
