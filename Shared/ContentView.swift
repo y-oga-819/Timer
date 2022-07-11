@@ -10,11 +10,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack {
                 Image("backgroundTimer")
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
-                    .aspectRatio(contentMode: ContentMode: .fill)
+                    .aspectRatio(contentMode: .fill)
+
+                VStack (spacing: 30.0){
+                    Text("残り10秒")
+                        .font(.largeTitle)
+                }
             }
             .navigationBarItems(trailing: NavigationLink(destination: SettingView()) {
                 Text("秒数設定")
