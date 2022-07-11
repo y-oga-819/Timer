@@ -11,7 +11,10 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("タイマー時間")
+                Image("backgroundTimer")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .aspectRatio(contentMode: ContentMode: .fill)
             }
             .navigationBarItems(trailing: NavigationLink(destination: SettingView()) {
                 Text("秒数設定")
