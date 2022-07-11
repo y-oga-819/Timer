@@ -19,12 +19,35 @@ struct ContentView: View {
                 VStack (spacing: 30.0){
                     Text("残り10秒")
                         .font(.largeTitle)
+                    
+                    HStack {
+                        Button(action: {
+                            
+                        }) {
+                            ButtonView(text: "スタート", backGroundColorName: "startColor")
+                            ButtonView(text: "ストップ", backGroundColorName: "stopColor")
+                        }
+                    }
                 }
             }
             .navigationBarItems(trailing: NavigationLink(destination: SettingView()) {
                 Text("秒数設定")
             })
         }
+    }
+}
+
+struct ButtonView: View {
+    let text: String
+    let backGroundColorName: String
+
+    var body: some View {
+        Text(text)
+            .font(.title)
+            .foregroundColor(Color.white)
+            .frame(width: 140, height: 140)
+            .background(Color(backGroundColorName))
+            .clipShape(Circle())
     }
 }
 
